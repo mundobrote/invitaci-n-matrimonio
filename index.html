@@ -14,11 +14,11 @@
 </head>
 <body>
 
-    <!-- AUDIO DE FONDO Y BOTÓN FLOTANTE -->
+    <!-- AUDIO DE FONDO Y CONTROL FLOTANTE -->
     <audio id="bgAudio" loop>
         <source src="audio/musica-romantica.mp3" type="audio/mp3">
     </audio>
-    <div id="audioToggle" class="audio-control hidden" onclick="toggleAudio()" title="Activar/Silenciar música">
+    <div id="audioToggle" class="audio-control hidden" onclick="toggleAudio()" title="Silenciar/Reproducir música">
         <i id="audioIcon" class="fa-solid fa-music"></i>
     </div>
 
@@ -134,14 +134,14 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 6 — NUESTROS MOMENTOS (GALERÍA) -->
+        <!-- SECCIÓN 6 — NUESTROS MOMENTOS (GALERÍA EDITORIAL) -->
         <section class="galeria-section">
             <div class="section-title">
                 <span>Galería</span>
                 <h2>Nuestros Momentos</h2>
             </div>
             <div class="galeria-grid">
-                <div class="galeria-item" onclick="abrirLightbox(this)">
+                <div class="galeria-item tall" onclick="abrirLightbox(this)">
                     <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=800" alt="Momento 1">
                 </div>
                 <div class="galeria-item" onclick="abrirLightbox(this)">
@@ -150,17 +150,17 @@
                 <div class="galeria-item" onclick="abrirLightbox(this)">
                     <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800" alt="Momento 3">
                 </div>
-                <div class="galeria-item" onclick="abrirLightbox(this)">
+                <div class="galeria-item tall" onclick="abrirLightbox(this)">
                     <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&q=80&w=800" alt="Momento 4">
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN 7 — CONFIRMACIÓN DE ASISTENCIA (RSVP) -->
+        <!-- SECCIÓN 7 — CONFIRMACIÓN DE ASISTENCIA (RSVP AVANZADO) -->
         <section class="rsvp-section">
             <div class="rsvp-box">
                 <h2>¿Nos acompañarás?</h2>
-                <p>Por favor confirma tu asistencia antes del 1 de Noviembre.</p>
+                <p class="rsvp-subtitle">Por favor confirma tu asistencia antes del 1 de Noviembre.</p>
                 <form id="rsvpForm" onsubmit="enviarRSVP(event)">
                     <div class="form-group">
                         <label for="nombreInvitado">Nombre y Apellido</label>
@@ -168,17 +168,32 @@
                     </div>
                     <div class="form-group">
                         <label for="asistencia">Confirmación</label>
-                        <select id="asistencia" required>
+                        <select id="asistencia" required onchange="toggleAsistenciaCampos()">
                             <option value="">Selecciona una opción</option>
                             <option value="si">¡Sí, ahí estaré!</option>
                             <option value="no">Lo siento, no podré asistir</option>
                         </select>
                     </div>
+                    <div id="camposAsistire">
+                        <div class="form-group">
+                            <label for="numAsistentes">Número de Asistentes</label>
+                            <input type="number" id="numAsistentes" min="1" max="3" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombresAcompanantes">Nombres de Acompañantes</label>
+                            <input type="text" id="nombresAcompanantes" placeholder="Si aplica, indica nombres">
+                        </div>
+                        <div class="form-group">
+                            <label for="restricciones">Restricciones Alimentarias</label>
+                            <input type="text" id="restricciones" placeholder="Vegetariano, alergias, etc.">
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label for="restricciones">Restricciones Alimentarias (Opcional)</label>
-                        <input type="text" id="restricciones" placeholder="Vegetariano, celíaco, alergias...">
+                        <label for="mensajeNovios">Mensaje Opcional para los Novios</label>
+                        <textarea id="mensajeNovios" rows="3" placeholder="Escribe un deseo para la pareja..."></textarea>
                     </div>
                     <button type="submit" class="btn-rsvp">Enviar Confirmación</button>
+                    <p class="backend-aviso">* Funcionalidad de base de datos pendiente de integración backend.</p>
                 </form>
             </div>
         </section>
