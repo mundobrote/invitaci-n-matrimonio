@@ -1,7 +1,6 @@
-// Configuración de la fecha objetivo de la boda (14 de Noviembre de 19:00 horas 2026)
+// Cuenta regresiva dinámica
 const fechaBoda = new Date("Nov 14, 2026 16:00:00").getTime();
 
-// Actualizar cuenta regresiva cada segundo
 const countdownInterval = setInterval(() => {
     const ahora = new Date().getTime();
     const diferencia = fechaBoda - ahora;
@@ -29,14 +28,12 @@ function abrirInvitacion() {
     const audio = document.getElementById('bgAudio');
     const audioToggle = document.getElementById('audioToggle');
 
-    // Reproducir música ambiental por interacción del usuario
     audio.play().then(() => {
         audioToggle.classList.remove('hidden');
     }).catch(error => {
         console.log("Reproducción automática bloqueada por navegador:", error);
     });
 
-    // Transición cinematográfica de apertura
     portada.style.opacity = '0';
     portada.style.transition = 'opacity 0.8s ease';
     setTimeout(() => {
@@ -46,7 +43,6 @@ function abrirInvitacion() {
     }, 800);
 }
 
-// Control de audio flotante
 function toggleAudio() {
     const audio = document.getElementById('bgAudio');
     const icon = document.getElementById('audioIcon');
@@ -73,15 +69,25 @@ function cerrarLightbox() {
     document.getElementById('lightboxModal').classList.add('hidden');
 }
 
-// Lógica de envío RSVP
+// Mostrar u ocultar campos adicionales del RSVP según la respuesta
+function toggleAsistenciaCampos() {
+    const asistencia = document.getElementById('asistencia').value;
+    const camposAsistire = document.getElementById('camposAsistire');
+    if (asistencia === 'no') {
+        camposAsistire.style.display = 'none';
+    } else {
+        camposAsistire.style.display = 'block';
+    }
+}
+
+// Envío RSVP (declarando que requiere integración de backend)
 function enviarRSVP(e) {
     e.preventDefault();
     const nombre = document.getElementById('nombreInvitado').value;
     const asistencia = document.getElementById('asistencia').value;
-    const restricciones = document.getElementById('restricciones').value;
     
     if (asistencia === 'si') {
-        alert(`¡Muchas gracias, ${nombre}! Hemos registrado tu asistencia con alegría.`);
+        alert(`¡Muchas gracias, ${nombre}! Hemos registrado provisionalmente tu asistencia. (Pendiente de conexión con base de datos segura).`);
     } else {
         alert(`Gracias por avisarnos, ${nombre}. Lamentamos que no puedas acompañarnos.`);
     }
