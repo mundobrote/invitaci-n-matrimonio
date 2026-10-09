@@ -1,26 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+    --bg-dark: #11120F;
+    --bg-olive: #252A22;
+    --ivory: #F5F0E7;
+    --champagne: #C6AA80;
+    --champagne-hover: #b3956b;
+    --text-gray: #A0A09F;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-script: 'Great Vibes', cursive;
+    --font-sans: 'Montserrat', sans-serif;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-sans);
 }
 
 body {
-    background-color: #fcfbf9;
-    color: #2c2c2c;
+    background-color: var(--bg-dark);
+    color: var(--ivory);
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 .hidden {
     display: none !important;
 }
 
-/* PORTADA */
+/* AUDIO CONTROL FLOTANTE */
+.audio-control {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 100;
+    background: rgba(37, 42, 34, 0.85);
+    border: 1px solid var(--champagne);
+    color: var(--champagne);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s;
+}
+.audio-control:hover {
+    transform: scale(1.1);
+}
+
+/* SECCIÓN 1 — PORTADA CINEMATOGRÁFICA */
 .portada-section {
     position: relative;
     width: 100vw;
     height: 100vh;
-    background: url('fotos/portada-novios.jpg') no-repeat center center/cover;
+    background: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1800') no-repeat center center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,57 +69,89 @@ body {
 .portada-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.45);
+    background: linear-gradient(to bottom, rgba(17,18,15,0.3), rgba(17,18,15,0.85));
 }
 
 .portada-content {
     position: relative;
     z-index: 2;
-    color: #ffffff;
+    color: var(--ivory);
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .sub-title-inv {
-    font-size: 1.1rem;
-    letter-spacing: 4px;
+    font-size: 0.95rem;
+    letter-spacing: 5px;
     text-transform: uppercase;
-    font-weight: 300;
+    color: var(--champagne);
+    font-weight: 500;
 }
 
 .portada-content h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 5rem;
-    margin: 15px 0;
-    color: #f7eedf;
+    font-family: var(--font-script);
+    font-size: 5.5rem;
+    margin: 10px 0;
+    color: var(--ivory);
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6);
 }
 
 .fecha-portada {
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    color: var(--text-gray);
+    margin-bottom: 35px;
 }
 
 .btn-abrir {
-    background: #d4af37;
-    color: white;
-    border: none;
-    padding: 14px 32px;
-    font-size: 1rem;
-    letter-spacing: 1px;
+    background: transparent;
+    color: var(--champagne);
+    border: 1px solid var(--champagne);
+    padding: 14px 36px;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     border-radius: 30px;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    transition: all 0.4s ease;
 }
 
 .btn-abrir:hover {
-    background: #c59b27;
-    transform: scale(1.05);
+    background: var(--champagne);
+    color: var(--bg-dark);
+    box-shadow: 0 0 25px rgba(198, 170, 128, 0.4);
 }
 
-/* MAIN CONTENT STYLES */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-gray);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+    40% { transform: translateY(-8px) translateX(-50%); }
+    60% { transform: translateY(-4px) translateX(-50%); }
+}
+
+/* MAIN CONTENT */
 .main-content {
-    animation: fadeIn 1.5s ease-in-out;
+    background-color: var(--bg-dark);
+    color: var(--ivory);
+    animation: fadeIn 1.2s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -90,38 +161,64 @@ body {
 
 .section-title {
     text-align: center;
-    padding: 60px 20px 30px 20px;
+    padding: 80px 20px 40px 20px;
 }
 
 .section-title span {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #bfa15f;
-    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--champagne);
+    font-weight: 500;
 }
 
 .section-title h2 {
-    font-family: 'Great Vibes', cursive;
+    font-family: var(--font-serif);
     font-size: 3rem;
-    color: #2c2c2c;
-    margin-top: 5px;
+    color: var(--ivory);
+    margin-top: 10px;
+    font-weight: 400;
+    font-style: italic;
 }
 
-/* TIMELINE HISTORIA */
+/* SECCIÓN 2 — NUESTRA INVITACIÓN */
+.invitacion-text-section {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.invitacion-quote {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-style: italic;
+    color: var(--champagne);
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.invitacion-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-gray);
+    letter-spacing: 0.5px;
+}
+
+/* SECCIÓN 3 — NUESTRA HISTORIA (TIMELINE) */
 .timeline {
-    max-width: 900px;
+    max-width: 950px;
     margin: 0 auto;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 70px;
 }
 
 .timeline-item {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 50px;
 }
 
 .timeline-item.reverse {
@@ -130,20 +227,22 @@ body {
 
 .timeline-img {
     flex: 1;
-    border-radius: 12px;
+    border-radius: 4px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    border: 1px solid rgba(198, 170, 128, 0.2);
 }
 
 .timeline-img img {
     width: 100%;
-    height: 300px;
+    height: 350px;
     object-fit: cover;
-    transition: transform 0.5s;
+    filter: brightness(0.9);
+    transition: transform 0.6s ease;
 }
 
 .timeline-img img:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .timeline-text {
@@ -152,199 +251,338 @@ body {
 }
 
 .timeline-text h3 {
-    font-size: 1.8rem;
-    margin-bottom: 5px;
-    color: #333;
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    color: var(--ivory);
 }
 
 .timeline-date {
-    color: #bfa15f;
+    color: var(--champagne);
     font-size: 0.85rem;
     font-weight: 600;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .timeline-text p {
-    color: #666;
-    line-height: 1.6;
+    color: var(--text-gray);
+    line-height: 1.7;
+    font-size: 0.95rem;
 }
 
-/* DETALLES */
+/* SECCIÓN 4 — CUENTA REGRESIVA */
+.countdown-section {
+    background: var(--bg-olive);
+    padding: 70px 20px;
+    text-align: center;
+    margin: 60px 0;
+    border-top: 1px solid rgba(198, 170, 128, 0.15);
+    border-bottom: 1px solid rgba(198, 170, 128, 0.15);
+}
+
+.countdown-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.countdown-box {
+    background: rgba(17, 18, 15, 0.4);
+    border: 1px solid rgba(198, 170, 128, 0.3);
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 90px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.countdown-number {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--champagne);
+    font-weight: 600;
+}
+
+.countdown-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-gray);
+    margin-top: 5px;
+}
+
+/* SECCIÓN 5 — EL GRAN DÍA */
 .cards-detalles {
     display: flex;
     justify-content: center;
     gap: 30px;
-    max-width: 1000px;
+    max-width: 1050px;
     margin: 0 auto;
     padding: 20px;
     flex-wrap: wrap;
 }
 
 .detalles-card {
-    background: white;
-    border: 1px solid #eae5de;
-    border-radius: 12px;
-    padding: 40px 30px;
+    background: var(--bg-olive);
+    border: 1px solid rgba(198, 170, 128, 0.2);
+    border-radius: 8px;
+    padding: 50px 35px;
     text-align: center;
     flex: 1;
-    min-width: 280px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+    min-width: 300px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+
+.detalles-card:hover {
+    transform: translateY(-5px);
 }
 
 .detalles-card i {
-    font-size: 2.5rem;
-    color: #bfa15f;
-    margin-bottom: 20px;
+    font-size: 2.2rem;
+    color: var(--champagne);
+    margin-bottom: 25px;
 }
 
 .detalles-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--ivory);
 }
 
 .detalles-card p {
-    color: #555;
-    margin-bottom: 8px;
+    color: var(--text-gray);
+    margin-bottom: 10px;
     font-size: 0.95rem;
 }
 
 .hora-evento {
-    font-weight: 700;
-    color: #bfa15f;
-    font-size: 1.2rem !important;
-    margin: 15px 0 !important;
+    font-family: var(--font-serif);
+    color: var(--champagne) !important;
+    font-size: 1.4rem !important;
+    margin: 20px 0 !important;
 }
 
 .btn-mapa {
     display: inline-block;
-    padding: 10px 20px;
-    background: #2c2c2c;
-    color: white;
+    margin-top: 15px;
+    padding: 12px 28px;
+    background: transparent;
+    color: var(--ivory);
+    border: 1px solid var(--champagne);
     text-decoration: none;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    transition: background 0.2s;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all 0.3s;
 }
 
 .btn-mapa:hover {
-    background: #bfa15f;
+    background: var(--champagne);
+    color: var(--bg-dark);
 }
 
-/* CRONOGRAMA */
-.cronograma-grid {
-    display: flex;
-    justify-content: center;
+/* SECCIÓN 6 — NUESTROS MOMENTOS (GALERÍA) */
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 20px;
-    flex-wrap: wrap;
 }
 
-.crono-item {
-    background: #fff;
-    border-radius: 10px;
-    padding: 30px 20px;
-    text-align: center;
-    flex: 1;
-    min-width: 200px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-    border-top: 3px solid #bfa15f;
+.galeria-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    height: 320px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-.crono-item i {
-    font-size: 1.8rem;
-    color: #bfa15f;
-    margin-bottom: 12px;
+.galeria-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9);
+    transition: transform 0.5s ease;
 }
 
-.crono-item h4 {
-    font-size: 1.1rem;
-    color: #333;
-    margin-bottom: 5px;
+.galeria-item:hover img {
+    transform: scale(1.06);
+    filter: brightness(1);
 }
 
-.crono-item p {
-    color: #666;
-    font-size: 0.9rem;
+/* LIGHTBOX MODAL */
+.lightbox {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(17, 18, 15, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.lightbox img {
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+}
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: var(--champagne);
+    font-size: 2.5rem;
+    cursor: pointer;
+    background: none;
+    border: none;
 }
 
-/* RSVP */
+/* SECCIÓN 7 — RSVP */
 .rsvp-section {
-    padding: 80px 20px;
-    background: #f4efe9;
+    padding: 90px 20px;
+    background: radial-gradient(circle at center, #1e231b 0%, var(--bg-dark) 100%);
     text-align: center;
 }
 
 .rsvp-box {
     max-width: 550px;
     margin: 0 auto;
-    background: white;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    background: var(--bg-olive);
+    padding: 50px 40px;
+    border-radius: 8px;
+    border: 1px solid rgba(198, 170, 128, 0.25);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
 }
 
 .rsvp-box h2 {
-    font-family: 'Great Vibes', cursive;
+    font-family: var(--font-serif);
     font-size: 3rem;
-    margin-bottom: 10px;
-    color: #2c2c2c;
+    margin-bottom: 15px;
+    color: var(--ivory);
+    font-weight: 400;
+    font-style: italic;
 }
 
 .rsvp-box p {
-    color: #666;
-    margin-bottom: 25px;
+    color: var(--text-gray);
+    margin-bottom: 30px;
     font-size: 0.95rem;
 }
 
-#rsvpForm input, #rsvpForm select {
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--champagne);
+    margin-bottom: 8px;
+}
+
+.rsvp-box input, .rsvp-box select, .rsvp-box textarea {
     width: 100%;
     padding: 14px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    background: rgba(17, 18, 15, 0.6);
+    border: 1px solid rgba(198, 170, 128, 0.3);
+    border-radius: 4px;
+    color: var(--ivory);
     font-size: 0.95rem;
+}
+
+.rsvp-box input:focus, .rsvp-box select:focus, .rsvp-box textarea:focus {
+    outline: none;
+    border-color: var(--champagne);
 }
 
 .btn-rsvp {
     width: 100%;
-    padding: 14px;
-    background: #bfa15f;
-    color: white;
+    padding: 15px;
+    background: var(--champagne);
+    color: var(--bg-dark);
     border: none;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
     font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.3s;
+    margin-top: 10px;
 }
 
 .btn-rsvp:hover {
-    background: #a98c4b;
+    background: var(--champagne-hover);
 }
 
+/* SECCIÓN 8 — CIERRE CINEMATOGRÁFICO */
+.cierre-section {
+    position: relative;
+    height: 90vh;
+    background: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=1800') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.cierre-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(17, 18, 15, 0.75);
+}
+
+.cierre-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    max-width: 700px;
+}
+
+.cierre-content h2 {
+    font-family: var(--font-script);
+    font-size: 4.5rem;
+    color: var(--ivory);
+    margin-bottom: 15px;
+}
+
+.cierre-content p {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--champagne);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* FOOTER */
 footer {
     text-align: center;
-    padding: 50px 20px;
-    background: #2c2c2c;
-    color: #f7eedf;
-}
-
-footer p {
-    font-size: 0.9rem;
+    padding: 40px 20px;
+    background: var(--bg-dark);
+    color: var(--text-gray);
+    font-size: 0.85rem;
     letter-spacing: 2px;
-    margin-bottom: 5px;
-}
-
-footer h2 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 2.5rem;
+    border-top: 1px solid rgba(198, 170, 128, 0.1);
 }
 
 @media(max-width: 768px) {
-    .portada-content h1 { font-size: 3.8rem; }
+    .portada-content h1 { font-size: 4rem; }
     .timeline-item, .timeline-item.reverse { flex-direction: column; text-align: center; }
     .timeline-text { text-align: center; }
+    .countdown-grid { gap: 12px; }
+    .countdown-box { min-width: 70px; padding: 12px; }
+    .countdown-number { font-size: 2rem; }
 }
