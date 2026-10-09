@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Boda | Sofía & Mateo</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- AUDIO DE FONDO -->
+    <audio id="bgAudio" loop>
+        <source src="audio/musica-romantica.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- PORTADA / SOBRE DE INVITACIÓN -->
+    <section id="portada" class="portada-section">
+        <div class="portada-overlay"></div>
+        <div class="portada-content">
+            <span class="sub-title-inv">Nuestra Boda</span>
+            <h1>Sofía & Mateo</h1>
+            <p class="fecha-portada">14 de Noviembre de 2026</p>
+            <button class="btn-abrir" onclick="abrirInvitacion()">
+                <i class="fa-solid fa-envelope-open-text"></i> Abrir Invitación
+            </button>
+        </div>
+    </section>
+
+    <!-- CONTENIDO PRINCIPAL (Oculto hasta abrir) -->
+    <div id="mainContent" class="main-content hidden">
+
+        <!-- SECCIÓN HISTORIA DE AMOR -->
+        <section class="historia-section">
+            <div class="section-title">
+                <span>Nuestra Historia</span>
+                <h2>Cómo empezó todo</h2>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-img">
+                        <img src="fotos/historia-1.jpg" alt="El inicio">
+                    </div>
+                    <div class="timeline-text">
+                        <h3>El Primer Encuentro</h3>
+                        <p class="timeline-date">12 de Octubre, 2021</p>
+                        <p>Una tarde casual de otoño bastó para que nuestras miradas se cruzaran y supiéramos que algo especial comenzaba.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item reverse">
+                    <div class="timeline-img">
+                        <img src="fotos/historia-2.jpg" alt="El compromiso">
+                    </div>
+                    <div class="timeline-text">
+                        <h3>La Gran Pregunta</h3>
+                        <p class="timeline-date">14 de Febrero, 2025</p>
+                        <p>Bajo las estrellas y con el corazón latiendo a mil por hora, dimos el paso más importante hacia nuestro futuro juntos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DETALLES Y UBICACIÓN -->
+        <section class="detalles-section">
+            <div class="section-title">
+                <span>Cuándo y Dónde</span>
+                <h2>El Gran Día</h2>
+            </div>
+
+            <div class="cards-detalles">
+                <div class="detalles-card">
+                    <i class="fa-solid fa-church"></i>
+                    <h3>Ceremonia Religiosa</h3>
+                    <p><strong>Iglesia Nuestra Señora del Carmen</strong></p>
+                    <p>Av. Los Conquistadores 2300</p>
+                    <p class="hora-evento">16:00 hrs</p>
+                    <a href="https://maps.google.com" target="_blank" class="btn-mapa">Ver en Google Maps</a>
+                </div>
+
+                <div class="detalles-card">
+                    <i class="fa-solid fa-glass-cheers"></i>
+                    <h3>Celebración & Fiesta</h3>
+                    <p><strong>Centro de Eventos Las Rosas</strong></p>
+                    <p>Camino Rural Parcela 14</p>
+                    <p class="hora-evento">19:30 hrs</p>
+                    <a href="https://maps.google.com" target="_blank" class="btn-mapa">Ver en Google Maps</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CRONOGRAMA -->
+        <section class="cronograma-section">
+            <div class="section-title">
+                <span>Itinerario</span>
+                <h2>Cronograma</h2>
+            </div>
+            <div class="cronograma-grid">
+                <div class="crono-item">
+                    <i class="fa-solid fa-ring"></i>
+                    <h4>16:00 hrs</h4>
+                    <p>Llegada y Ceremonia</p>
+                </div>
+                <div class="crono-item">
+                    <i class="fa-solid fa-camera-retro"></i>
+                    <h4>18:00 hrs</h4>
+                    <p>Sesión de Fotos & Cocktail</p>
+                </div>
+                <div class="crono-item">
+                    <i class="fa-solid fa-utensils"></i>
+                    <h4>19:30 hrs</h4>
+                    <p>Cena & Brindis</p>
+                </div>
+                <div class="crono-item">
+                    <i class="fa-solid fa-music"></i>
+                    <h4>21:30 hrs</h4>
+                    <p>¡A Bailar!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONFIRMACIÓN (RSVP) -->
+        <section class="rsvp-section">
+            <div class="rsvp-box">
+                <h2>¿Nos acompañarás?</h2>
+                <p>Por favor confirma tu asistencia antes del 1 de Noviembre.</p>
+                <form id="rsvpForm" onsubmit="enviarRSVP(event)">
+                    <input type="text" id="nombreInvitado" placeholder="Tu Nombre y Apellido" required>
+                    <select id="asistencia" required>
+                        <option value="">-- Selecciona una opción --</option>
+                        <option value="si">¡Sí, ahí estaré!</option>
+                        <option value="no">Lo siento, no podré asistir</option>
+                    </select>
+                    <button type="submit" class="btn-rsvp">Enviar Confirmación</button>
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            <p>¡Te esperamos para celebrar juntos!</p>
+            <h2>Sofía & Mateo</h2>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
