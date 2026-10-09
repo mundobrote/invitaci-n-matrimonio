@@ -7,35 +7,48 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- AUDIO DE FONDO -->
+    <!-- AUDIO DE FONDO Y BOTÓN FLOTANTE -->
     <audio id="bgAudio" loop>
         <source src="audio/musica-romantica.mp3" type="audio/mp3">
     </audio>
+    <div id="audioToggle" class="audio-control hidden" onclick="toggleAudio()" title="Activar/Silenciar música">
+        <i id="audioIcon" class="fa-solid fa-music"></i>
+    </div>
 
-    <!-- PORTADA / SOBRE DE INVITACIÓN -->
+    <!-- SECCIÓN 1 — PORTADA CINEMATOGRÁFICA -->
     <section id="portada" class="portada-section">
         <div class="portada-overlay"></div>
         <div class="portada-content">
-            <span class="sub-title-inv">Nuestra Boda</span>
+            <span class="sub-title-inv">Nos Casamos</span>
             <h1>Sofía & Mateo</h1>
             <p class="fecha-portada">14 de Noviembre de 2026</p>
             <button class="btn-abrir" onclick="abrirInvitacion()">
-                <i class="fa-solid fa-envelope-open-text"></i> Abrir Invitación
+                Abrir Invitación
             </button>
+        </div>
+        <div class="scroll-indicator">
+            <span>Desliza para descubrir</span>
+            <i class="fa-solid fa-chevron-down"></i>
         </div>
     </section>
 
-    <!-- CONTENIDO PRINCIPAL (Oculto hasta abrir) -->
+    <!-- CONTENIDO PRINCIPAL (Oculto hasta iniciar) -->
     <div id="mainContent" class="main-content hidden">
 
-        <!-- SECCIÓN HISTORIA DE AMOR -->
+        <!-- SECCIÓN 2 — NUESTRA INVITACIÓN -->
+        <section class="invitacion-text-section">
+            <p class="invitacion-quote">“Hay momentos que se vuelven eternos cuando se comparten con las personas que amamos”.</p>
+            <p class="invitacion-body">Con mucha alegría, queremos invitarte a celebrar el comienzo de nuestra vida juntos y compartir con nosotros uno de los días más importantes de nuestra historia.</p>
+        </section>
+
+        <!-- SECCIÓN 3 — NUESTRA HISTORIA -->
         <section class="historia-section">
             <div class="section-title">
                 <span>Nuestra Historia</span>
@@ -45,29 +58,55 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-img">
-                        <img src="fotos/historia-1.jpg" alt="El inicio">
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=900" alt="El Primer Encuentro">
                     </div>
                     <div class="timeline-text">
                         <h3>El Primer Encuentro</h3>
                         <p class="timeline-date">12 de Octubre, 2021</p>
-                        <p>Una tarde casual de otoño bastó para que nuestras miradas se cruzaran y supiéramos que algo especial comenzaba.</p>
+                        <p>Una tarde casual de otoño bastó para que nuestras miradas se cruzaran y supiéramos que algo extraordinario comenzaba a escribirse.</p>
                     </div>
                 </div>
 
                 <div class="timeline-item reverse">
                     <div class="timeline-img">
-                        <img src="fotos/historia-2.jpg" alt="El compromiso">
+                        <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=900" alt="La Gran Pregunta">
                     </div>
                     <div class="timeline-text">
                         <h3>La Gran Pregunta</h3>
                         <p class="timeline-date">14 de Febrero, 2025</p>
-                        <p>Bajo las estrellas y con el corazón latiendo a mil por hora, dimos el paso más importante hacia nuestro futuro juntos.</p>
+                        <p>Bajo un cielo estrellado y con el corazón latiendo a mil por hora, dimos el paso más importante hacia nuestro futuro juntos.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- DETALLES Y UBICACIÓN -->
+        <!-- SECCIÓN 4 — CUENTA REGRESIVA -->
+        <section class="countdown-section">
+            <div class="section-title" style="padding-top: 0; padding-bottom: 30px;">
+                <span>Faltan</span>
+                <h2>La Espera</h2>
+            </div>
+            <div class="countdown-grid">
+                <div class="countdown-box">
+                    <div id="days" class="countdown-number">00</div>
+                    <div class="countdown-label">Días</div>
+                </div>
+                <div class="countdown-box">
+                    <div id="hours" class="countdown-number">00</div>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-box">
+                    <div id="minutes" class="countdown-number">00</div>
+                    <div class="countdown-label">Minutos</div>
+                </div>
+                <div class="countdown-box">
+                    <div id="seconds" class="countdown-number">00</div>
+                    <div class="countdown-label">Segundos</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5 — EL GRAN DÍA -->
         <section class="detalles-section">
             <div class="section-title">
                 <span>Cuándo y Dónde</span>
@@ -81,7 +120,7 @@
                     <p><strong>Iglesia Nuestra Señora del Carmen</strong></p>
                     <p>Av. Los Conquistadores 2300</p>
                     <p class="hora-evento">16:00 hrs</p>
-                    <a href="https://maps.google.com" target="_blank" class="btn-mapa">Ver en Google Maps</a>
+                    <a href="https://maps.google.com" target="_blank" class="btn-mapa">Cómo llegar</a>
                 </div>
 
                 <div class="detalles-card">
@@ -90,62 +129,81 @@
                     <p><strong>Centro de Eventos Las Rosas</strong></p>
                     <p>Camino Rural Parcela 14</p>
                     <p class="hora-evento">19:30 hrs</p>
-                    <a href="https://maps.google.com" target="_blank" class="btn-mapa">Ver en Google Maps</a>
+                    <a href="https://maps.google.com" target="_blank" class="btn-mapa">Cómo llegar</a>
                 </div>
             </div>
         </section>
 
-        <!-- CRONOGRAMA -->
-        <section class="cronograma-section">
+        <!-- SECCIÓN 6 — NUESTROS MOMENTOS (GALERÍA) -->
+        <section class="galeria-section">
             <div class="section-title">
-                <span>Itinerario</span>
-                <h2>Cronograma</h2>
+                <span>Galería</span>
+                <h2>Nuestros Momentos</h2>
             </div>
-            <div class="cronograma-grid">
-                <div class="crono-item">
-                    <i class="fa-solid fa-ring"></i>
-                    <h4>16:00 hrs</h4>
-                    <p>Llegada y Ceremonia</p>
+            <div class="galeria-grid">
+                <div class="galeria-item" onclick="abrirLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=800" alt="Momento 1">
                 </div>
-                <div class="crono-item">
-                    <i class="fa-solid fa-camera-retro"></i>
-                    <h4>18:00 hrs</h4>
-                    <p>Sesión de Fotos & Cocktail</p>
+                <div class="galeria-item" onclick="abrirLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&q=80&w=800" alt="Momento 2">
                 </div>
-                <div class="crono-item">
-                    <i class="fa-solid fa-utensils"></i>
-                    <h4>19:30 hrs</h4>
-                    <p>Cena & Brindis</p>
+                <div class="galeria-item" onclick="abrirLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800" alt="Momento 3">
                 </div>
-                <div class="crono-item">
-                    <i class="fa-solid fa-music"></i>
-                    <h4>21:30 hrs</h4>
-                    <p>¡A Bailar!</p>
+                <div class="galeria-item" onclick="abrirLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&q=80&w=800" alt="Momento 4">
                 </div>
             </div>
         </section>
 
-        <!-- CONFIRMACIÓN (RSVP) -->
+        <!-- SECCIÓN 7 — CONFIRMACIÓN DE ASISTENCIA (RSVP) -->
         <section class="rsvp-section">
             <div class="rsvp-box">
                 <h2>¿Nos acompañarás?</h2>
                 <p>Por favor confirma tu asistencia antes del 1 de Noviembre.</p>
                 <form id="rsvpForm" onsubmit="enviarRSVP(event)">
-                    <input type="text" id="nombreInvitado" placeholder="Tu Nombre y Apellido" required>
-                    <select id="asistencia" required>
-                        <option value="">-- Selecciona una opción --</option>
-                        <option value="si">¡Sí, ahí estaré!</option>
-                        <option value="no">Lo siento, no podré asistir</option>
-                    </select>
+                    <div class="form-group">
+                        <label for="nombreInvitado">Nombre y Apellido</label>
+                        <input type="text" id="nombreInvitado" placeholder="Tu nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="asistencia">Confirmación</label>
+                        <select id="asistencia" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="si">¡Sí, ahí estaré!</option>
+                            <option value="no">Lo siento, no podré asistir</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="restricciones">Restricciones Alimentarias (Opcional)</label>
+                        <input type="text" id="restricciones" placeholder="Vegetariano, celíaco, alergias...">
+                    </div>
                     <button type="submit" class="btn-rsvp">Enviar Confirmación</button>
                 </form>
             </div>
         </section>
 
+        <!-- SECCIÓN 8 — CIERRE CINEMATOGRÁFICO -->
+        <section class="cierre-section">
+            <div class="cierre-overlay"></div>
+            <div class="cierre-content">
+                <h2>Sofía & Mateo</h2>
+                <p>“El comienzo de nuestra historia favorita. Gracias por ser parte de ella”.</p>
+                <button class="btn-abrir" onclick="window.scrollTo({top: document.querySelector('.rsvp-section').offsetTop, behavior: 'smooth'})">
+                    Confirmar Asistencia
+                </button>
+            </div>
+        </section>
+
         <footer>
-            <p>¡Te esperamos para celebrar juntos!</p>
-            <h2>Sofía & Mateo</h2>
+            <p>Sofía & Mateo — 2026</p>
         </footer>
+    </div>
+
+    <!-- MODAL LIGHTBOX -->
+    <div id="lightboxModal" class="lightbox hidden" onclick="cerrarLightbox()">
+        <button class="lightbox-close">&times;</button>
+        <img id="lightboxImg" src="" alt="Ampliada">
     </div>
 
     <script src="script.js"></script>
