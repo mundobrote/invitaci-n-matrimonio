@@ -12,6 +12,7 @@
     --font-sans: 'Montserrat', sans-serif;
 }
 
+/* RESET GENERAL PARA EVITAR DESBORDAMIENTOS HORIZONTALES */
 * {
     margin: 0;
     padding: 0;
@@ -19,15 +20,25 @@
     font-family: var(--font-sans);
 }
 
-body {
+html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
     background-color: var(--bg-dark);
     color: var(--ivory);
-    overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
 .hidden {
     display: none !important;
+}
+
+/* CONTENEDOR GLOBAL DE ANCHO MÁXIMO PARA BLOQUES */
+.site-wrapper {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* AUDIO CONTROL FLOTANTE */
@@ -36,7 +47,7 @@ body {
     bottom: 25px;
     right: 25px;
     z-index: 100;
-    background: rgba(37, 42, 34, 0.85);
+    background: rgba(37, 42, 34, 0.9);
     border: 1px solid var(--champagne);
     color: var(--champagne);
     width: 45px;
@@ -74,10 +85,11 @@ body {
     position: relative;
     z-index: 2;
     color: var(--ivory);
-    padding: 20px;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .sub-title-inv {
@@ -155,7 +167,9 @@ body {
 
 .section-title {
     text-align: center;
-    padding: 90px 20px 40px 20px;
+    padding: 80px 20px 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .section-title span {
@@ -179,7 +193,7 @@ body {
 .invitacion-text-section {
     max-width: 750px;
     margin: 0 auto;
-    padding: 70px 20px;
+    padding: 60px 20px;
     text-align: center;
 }
 
@@ -189,7 +203,7 @@ body {
     font-style: italic;
     color: var(--champagne);
     line-height: 1.5;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .invitacion-body {
@@ -199,27 +213,28 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* SECCIÓN 3 — NUESTRA HISTORIA */
+/* SECCIÓN 3 — NUESTRA HISTORIA (CORREGIDA Y CONSISTENTE) */
 .timeline {
     max-width: 950px;
     margin: 0 auto;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 70px;
+    gap: 60px;
 }
 
 .timeline-item {
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 40px;
 }
 
 .timeline-item.reverse { flex-direction: row-reverse; }
 
 .timeline-img {
     flex: 1;
-    border-radius: 4px;
+    width: 100%;
+    border-radius: 6px;
     overflow: hidden;
     box-shadow: 0 15px 35px rgba(0,0,0,0.4);
     border: 1px solid rgba(198, 170, 128, 0.2);
@@ -227,15 +242,20 @@ body {
 
 .timeline-img img {
     width: 100%;
-    height: 350px;
+    height: 320px;
     object-fit: cover;
     filter: brightness(0.9);
     transition: transform 0.6s ease;
+    display: block;
 }
 
 .timeline-img img:hover { transform: scale(1.03); }
 
-.timeline-text { flex: 1; text-align: left; }
+.timeline-text { 
+    flex: 1; 
+    text-align: left; 
+    padding: 10px;
+}
 
 .timeline-text h3 {
     font-family: var(--font-serif);
@@ -248,7 +268,7 @@ body {
     color: var(--champagne);
     font-size: 0.85rem;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -259,89 +279,102 @@ body {
     font-size: 0.95rem;
 }
 
-/* SECCIÓN 4 — CUENTA REGRESIVA */
+/* SECCIÓN 4 — CUENTA REGRESIVA (PERFECTAMENTE CENTRADA) */
 .countdown-section {
     background: var(--bg-olive);
-    padding: 70px 20px;
+    padding: 60px 20px;
     text-align: center;
-    margin: 60px 0;
+    margin: 60px auto;
     border-top: 1px solid rgba(198, 170, 128, 0.15);
     border-bottom: 1px solid rgba(198, 170, 128, 0.15);
+    width: 100%;
 }
 
-.countdown-grid {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
+.countdown-container-inner {
     max-width: 600px;
     margin: 0 auto;
 }
 
+.countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
 .countdown-box {
-    background: rgba(17, 18, 15, 0.4);
+    background: rgba(17, 18, 15, 0.5);
     border: 1px solid rgba(198, 170, 128, 0.3);
-    padding: 20px;
+    padding: 15px 10px;
     border-radius: 6px;
-    min-width: 90px;
+    text-align: center;
     box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
 
 .countdown-number {
     font-family: var(--font-serif);
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: var(--champagne);
     font-weight: 600;
 }
 
 .countdown-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     color: var(--text-gray);
     margin-top: 5px;
 }
 
-/* SECCIÓN 5 — EL GRAN DÍA */
+/* SECCIÓN 5 — EL GRAN DÍA (TARJETAS SIMÉTRICAS Y ALINEADAS) */
 .cards-detalles {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    max-width: 1050px;
+    max-width: 950px;
     margin: 0 auto;
     padding: 20px;
-    flex-wrap: wrap;
 }
 
 .detalles-card {
     background: var(--bg-olive);
     border: 1px solid rgba(198, 170, 128, 0.2);
     border-radius: 6px;
-    padding: 50px 35px;
+    padding: 45px 30px;
     text-align: center;
-    flex: 1;
-    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     transition: transform 0.3s;
+    height: 100%;
 }
 
 .detalles-card:hover { transform: translateY(-5px); }
 
+.detalles-card-content {
+    flex-grow: 1;
+}
+
 .detalles-card i {
     font-size: 2.2rem;
     color: var(--champagne);
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .detalles-card h3 {
     font-family: var(--font-serif);
     font-size: 1.8rem;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: var(--ivory);
 }
 
 .detalles-card p {
     color: var(--text-gray);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-size: 0.95rem;
 }
 
@@ -349,12 +382,12 @@ body {
     font-family: var(--font-serif);
     color: var(--champagne) !important;
     font-size: 1.4rem !important;
-    margin: 20px 0 !important;
+    margin: 15px 0 !important;
 }
 
 .btn-mapa {
     display: inline-block;
-    margin-top: 15px;
+    margin-top: 20px;
     padding: 12px 28px;
     background: transparent;
     color: var(--ivory);
@@ -372,21 +405,25 @@ body {
     color: var(--bg-dark);
 }
 
-/* SECCIÓN 6 — NUESTROS MOMENTOS (GALERÍA EDITORIAL) */
+/* SECCIÓN 6 — NUESTROS MOMENTOS (GALERÍA MODERNA SIN DESBORDAMIENTOS) */
+.galeria-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
 .galeria-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 20px;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 20px;
+    width: 100%;
 }
 
 .galeria-item {
     position: relative;
     overflow: hidden;
-    border-radius: 4px;
-    height: 340px;
+    border-radius: 6px;
+    height: 320px;
     cursor: pointer;
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     grid-column: span 6;
@@ -394,12 +431,7 @@ body {
 
 .galeria-item.tall {
     grid-column: span 6;
-    height: 440px;
-}
-
-.galeria-item.full {
-    grid-column: span 12;
-    height: 400px;
+    height: 420px;
 }
 
 .galeria-item img {
@@ -408,6 +440,7 @@ body {
     object-fit: cover;
     filter: brightness(0.9);
     transition: transform 0.6s ease;
+    display: block;
 }
 
 .galeria-item:hover img {
@@ -418,23 +451,25 @@ body {
 /* LIGHTBOX MODAL */
 .lightbox {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0; left: 0; width: 100vw; height: 100vh;
     background: rgba(17, 18, 15, 0.96);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    padding: 20px;
 }
 .lightbox img {
     max-width: 90%;
     max-height: 85vh;
     border-radius: 4px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    object-fit: contain;
 }
 .lightbox-close {
     position: absolute;
-    top: 30px;
-    right: 40px;
+    top: 25px;
+    right: 30px;
     color: var(--champagne);
     font-size: 2.5rem;
     cursor: pointer;
@@ -442,18 +477,18 @@ body {
     border: none;
 }
 
-/* SECCIÓN 7 — RSVP AVANZADO */
+/* SECCIÓN 7 — RSVP AVANZADO Y CENTRADO */
 .rsvp-section {
-    padding: 90px 20px;
+    padding: 80px 20px;
     background: radial-gradient(circle at center, #1e231b 0%, var(--bg-dark) 100%);
     text-align: center;
 }
 
 .rsvp-box {
-    max-width: 600px;
+    max-width: 580px;
     margin: 0 auto;
     background: var(--bg-olive);
-    padding: 50px 40px;
+    padding: 45px 35px;
     border-radius: 6px;
     border: 1px solid rgba(198, 170, 128, 0.25);
     box-shadow: 0 15px 40px rgba(0,0,0,0.5);
@@ -462,7 +497,7 @@ body {
 
 .rsvp-box h2 {
     font-family: var(--font-serif);
-    font-size: 3rem;
+    font-size: 2.8rem;
     margin-bottom: 10px;
     color: var(--ivory);
     font-weight: 400;
@@ -472,12 +507,12 @@ body {
 
 .rsvp-box p.rsvp-subtitle {
     color: var(--text-gray);
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     font-size: 0.95rem;
     text-align: center;
 }
 
-.form-group { margin-bottom: 20px; }
+.form-group { margin-bottom: 18px; }
 
 .form-group label {
     display: block;
@@ -549,8 +584,9 @@ body {
 .cierre-content {
     position: relative;
     z-index: 2;
-    padding: 20px;
+    padding: 0 20px;
     max-width: 700px;
+    width: 100%;
 }
 
 .cierre-content h2 {
@@ -579,9 +615,12 @@ footer {
     border-top: 1px solid rgba(198, 170, 128, 0.1);
 }
 
+/* MEDIA QUERIES RESPONSIVE PARA DISPOSITIVOS MÓVILES */
 @media(max-width: 768px) {
-    .portada-content h1 { font-size: 4rem; }
-    .timeline-item, .timeline-item.reverse { flex-direction: column; text-align: center; }
-    .timeline-text { text-align: center; }
-    .galeria-item, .galeria-item.tall, .galeria-item.full { grid-column: span 12; height: 300px; }
+    .portada-content h1 { font-size: 3.8rem; }
+    .timeline-item, .timeline-item.reverse { flex-direction: column; text-align: center; gap: 20px; }
+    .timeline-text { text-align: center; padding: 0; }
+    .countdown-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 320px; margin: 0 auto; }
+    .galeria-item, .galeria-item.tall { grid-column: span 12; height: 280px; }
+    .rsvp-box { padding: 30px 20px; }
 }
