@@ -80,7 +80,7 @@ function toggleAsistenciaCampos() {
     }
 }
 
-// Envío RSVP (declarando que requiere integración de backend)
+// Envío RSVP
 function enviarRSVP(e) {
     e.preventDefault();
     const nombre = document.getElementById('nombreInvitado').value;
